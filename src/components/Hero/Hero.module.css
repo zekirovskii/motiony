@@ -1,0 +1,93 @@
+.hero {
+    position: relative;
+    background: url('/background.jpg') center/cover no-repeat;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.heroBack {
+    text-align: center;
+    background: rgba(233, 42, 42, 0.5);
+    padding: 20px;
+}
+
+.searchBox {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.inputHero {
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    width: 300px;
+}
+
+.buttonHero {
+    background-color: #01b4e4;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.searchDiv{
+    max-width: 1340px;
+    position: relative;
+}
+
+.inputSearch{
+    width:1220px;
+    height: 44px;
+    font-style: italic;
+    border: 1px solid red;
+}
+.searchIcon{
+    width: 44px;
+    height: 44px;
+    border: none;
+    background-color:#fff;
+}
+.searchIcon:hover{
+    color: #01b4e4;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 20;
+    left: 0;
+    width: 100%;
+    min-height: 400px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #000;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    padding-top: 0px;
+    overflow-y: auto;
+}
+
+.dropdown h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+}

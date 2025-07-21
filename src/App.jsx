@@ -1,8 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/Layout/Header";
+import Hero from "./components/Hero/Hero";
+import { SearchProvider } from './context/SearchContext';
 
-function App() {
+export default function App() {
+  return (
+    <SearchProvider>
+      <Router>
+        <Header />
+        <Hero />
+      </Router>
+    </SearchProvider>
+  );
 }
-
-export default App
