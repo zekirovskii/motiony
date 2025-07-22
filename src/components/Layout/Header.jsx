@@ -5,7 +5,7 @@ import { useSearch } from '../../context/SearchContext';
 
 export default function Header() {
 
-const { openDrop } = useSearch();
+const { showDropdown , openDrop } = useSearch();
 
   return (
     <header className={css.header}>
@@ -29,7 +29,7 @@ const { openDrop } = useSearch();
           </Link>
         </nav>
         <button className={css.searchIcon} onClick={openDrop} >
-          <FaSearch />
+          <FaSearch/>
         </button>
       </div>
     </header>
