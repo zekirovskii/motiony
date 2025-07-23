@@ -21,12 +21,22 @@ const { showDropdown , openDrop } = useSearch();
         </div>
 
         <nav className={css.nav}>
-          <Link to="/movies" className={css.navLink}>
-            Movies
-          </Link>
-          <Link to="/tvshows" className={css.navLink}>
-            TV Shows
-          </Link>
+          <div className={css.navItem}>
+            <span className={css.navLink}>Movies</span>
+            <ul className={css.dropdown}>
+              <li><Link to="/movies/popular">Popular</Link></li>
+              <li><Link to="/movies/top_rated">Top Rated</Link></li>
+              <li><Link to="/movies/upcoming">Upcoming</Link></li>
+            </ul>
+          </div>
+          <div className={css.navItem}>
+            <span className={css.navLink}>Tv Shows</span>
+            <ul className={css.dropdown}>
+              <li><Link to="/tvshows/popular">Popüler</Link></li>
+              <li><Link to="/tvshows/top_rated">Top Rated</Link></li>
+              <li><Link to="/tvshows/on_the_air">On The Air</Link></li>
+            </ul>
+          </div>
         </nav>
         <button className={css.searchIcon} onClick={openDrop} >
           <FaSearch/>

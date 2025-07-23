@@ -36,7 +36,7 @@ export default function Hero() {
       <div className={css.overlay}>
        
         <div className={css.heroBack}>
-          <h1>Welcome.</h1>
+          <h1>Welcome!</h1>
           <p>Millions of movies, TV shows and people to discover. Explore now.</p>
           <div className={css.searchBox}>
             <input

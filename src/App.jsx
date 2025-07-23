@@ -1,17 +1,18 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import Header from "./components/Layout/Header";
-import Hero from "./components/Hero/Hero";
-import SearchInput from "./components/SearchInput/SearchInput";
+import { BrowserRouter as Router } from 'react-router-dom';
 import { SearchProvider } from './context/SearchContext';
+import AppRoutes from './routes/AppRoutes';
+import { FavoritesProvider } from './context/FavoritesContext';
+
 
 export default function App() {
+
   return (
-    <SearchProvider>
-      <Router>
-        <Header />
-        <SearchInput />
-        <Hero />
-      </Router>
-    </SearchProvider>
+<FavoritesProvider>
+      <SearchProvider>
+        <Router>
+          <AppRoutes />
+        </Router>
+      </SearchProvider>
+    </FavoritesProvider>
   );
 }

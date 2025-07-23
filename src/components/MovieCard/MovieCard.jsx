@@ -1,0 +1,57 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import css from './MovieCard.module.css';
+import StarButton from '../StarButton/StarButton';
+import { useFavorites } from '../../context/FavoritesContext';
+
+export default function MovieCard({ movie }) {
+  const { id, title, name, poster_path, vote_average, release_date } = movie;
+  const displayTitle = title || name;
+  const posterUrl = poster_path
+    ? `https://image.tmdb.org/t/p/w300${poster_path}`
+    : '/placeholder-300x450.png';
+
+  const score = Math.round(vote_average * 10);
+  const date = release_date
+    ? new Date(release_date).toLocaleDateString('tr-TR', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      })
+    : '';
+
+  const { isFavorite, toggleFavorite } = useFavorites();
+
+  return (
+    <div className={css.card}>
+      <div className={css.posterWrapper}>
+        <img src={posterUrl} alt={displayTitle} className={css.poster} />
+
+        <StarButton
+          isActive={isFavorite(id)}
+          onClick={() => toggleFavorite(movie)}
+        />
+
+        <div className={css.scoreBadge}>
+          <span>{score}<sup>%</sup></span>
+        </div>
+      </div>
+
+      <div className={css.info}>
+        <h3 className={css.title}>{displayTitle}</h3>
+        <p className={css.date}>{date}</p>
+      </div>
+    </div>
+  );
+}
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    name: PropTypes.string,
+    poster_path: PropTypes.string,
+    vote_average: PropTypes.number,
+    release_date: PropTypes.string,
+  }).isRequired,
+};

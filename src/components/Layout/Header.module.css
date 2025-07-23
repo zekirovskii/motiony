@@ -35,10 +35,69 @@
     color: #fff;
     text-decoration: none;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .navLink:hover {
     color: #01b4e4;
+}
+
+.navItem {
+    position: relative;
+}
+
+.navItem:hover .dropdown {
+    display: block;
+}
+
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 100;
+    min-width: 130px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+}
+
+.navItem:hover .dropdown{
+    display: block;
+}
+
+
+.dropdown li {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+   
+    box-sizing: border-box;
+}
+
+.dropdown li a {
+    font-size: 15px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #333;
+    text-decoration: none;
+}
+
+
+.dropdown li:hover>a {
+    background-color: rgba(99, 104, 105, 0.1);
+    
 }
 
 .logoImage {
