@@ -24,17 +24,17 @@ const { showDropdown , openDrop } = useSearch();
           <div className={css.navItem}>
             <span className={css.navLink}>Movies</span>
             <ul className={css.dropdown}>
-              <li><Link to="/movies/popular">Popular</Link></li>
-              <li><Link to="/movies/top_rated">Top Rated</Link></li>
-              <li><Link to="/movies/upcoming">Upcoming</Link></li>
+              <li><Link to="/movies/category/popular">Popular</Link></li>
+              <li><Link to="/movies/category/top_rated">Top Rated</Link></li>
+              <li><Link to="/movies/category/upcoming">Upcoming</Link></li>
             </ul>
           </div>
           <div className={css.navItem}>
             <span className={css.navLink}>Tv Shows</span>
             <ul className={css.dropdown}>
-              <li><Link to="/tvshows/popular">Popüler</Link></li>
-              <li><Link to="/tvshows/top_rated">Top Rated</Link></li>
-              <li><Link to="/tvshows/on_the_air">On The Air</Link></li>
+              <li><Link to="/tvshows/category/popular">Popüler</Link></li>
+              <li><Link to="/tvshows/category/top_rated">Top Rated</Link></li>
+              <li><Link to="/tvshows/category/on_the_air">On The Air</Link></li>
             </ul>
           </div>
         </nav>

@@ -3,7 +3,11 @@ import axios from 'axios';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-// console.log(API_KEY);
+// UI --> TMDB
+const typeMap = {
+  movies: 'movie',
+  tvshows: 'tv',
+};
 
 // Hero --> Background
 export const fetchTrending = async () => {
@@ -13,7 +17,7 @@ export const fetchTrending = async () => {
   return response.data.results;
 };
 
-// Search
+// Search 
 export const searchItem = async (query) => {
   const res = await fetch(
     `${BASE_URL}/search/multi?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(query)}&page=1&include_adult=false`
@@ -22,40 +26,29 @@ export const searchItem = async (query) => {
   return data.results;
 };
 
-// Movie
-export async function fetchPopularMovies(page = 1) {
-  const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=tr-TR&page=${page}`);
-  if (!res.ok) throw new Error('Popular verisi alınamadı');
+// Category Page
+export async function fetchMoviesOrTvByCategory(type, category) {
+  const mappedType = typeMap[type] || type;
+
+  const url = `${BASE_URL}/${mappedType}/${category}?api_key=${API_KEY}`;
+  const res = await fetch(url);
   return await res.json();
 }
 
-export async function fetchUpcomingMovies(page = 1) {
-  const res = await fetch(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=tr-TR&page=${page}`);
-  if (!res.ok) throw new Error('Upcoming verisi alınamadı');
+// Details
+export async function fetchDetailsById(type, id) {
+  const mappedType = typeMap[type] || type;
+
+  const url = `${BASE_URL}/${mappedType}/${id}?api_key=${API_KEY}&language=tr-TR`;
+  const res = await fetch(url);
   return await res.json();
 }
 
-export async function fetchTopRatedMovies(page = 1) {
-  const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=tr-TR&page=${page}`);
-  if (!res.ok) throw new Error('Top Rated verisi alınamadı');
-  return await res.json();
-}
+// Actors 
+export async function fetchCreditsById(type, id) {
+  const mappedType = typeMap[type] || type;
 
-// TV
-export async function fetchPopularTv(page = 1) {
-  const res = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=tr-TR&page=${page}`);
-  if (!res.ok) throw new Error('Popular TV verisi alınamadı');
-  return await res.json();
-}
-
-export async function fetchTopRatedTv(page = 1) {
-  const res = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}&language=tr-TR&page=${page}`);
-  if (!res.ok) throw new Error('Top Rated TV verisi alınamadı');
-  return await res.json();
-}
-
-export async function fetchOnTheAirTv(page = 1) {
-  const res = await fetch(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${API_KEY}&language=tr-TR&page=${page}`);
-  if (!res.ok) throw new Error('On The Air verisi alınamadı');
+  const url = `${BASE_URL}/${mappedType}/${id}/credits?api_key=${API_KEY}&language=tr-TR`;
+  const res = await fetch(url);
   return await res.json();
 }

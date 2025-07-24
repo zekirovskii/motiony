@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    color: #0d253f;
+}
+
+.poster {
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.details {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+        z-index: 2;
+        
+        
+}
+
+.title {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.meta {
+    font-size: 0.95rem;
+    color: #6c7a89;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.score {
+    font-weight: bold;
+    color: #01b4e4;
+}
+
+.overview {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.extra {
+    font-size: 0.9rem;
+    color: #3b3b3b;
+}
+
+.castSection {
+    margin-top: 1.5rem;
+}
+
+.castList {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.character {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
