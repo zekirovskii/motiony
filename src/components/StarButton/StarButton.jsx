@@ -8,7 +8,7 @@ export default function StarButton({ isActive, onClick }) {
       onClick={onClick}
       aria-label={isActive ? 'Favoriden çıkar' : 'Favoriye ekle'}
     >
-      {isActive ? <FaStar /> : <FaRegStar />}
+      {isActive ? <FaStar size={20} /> : <FaRegStar size={20} />}
     </button>
   );
 }

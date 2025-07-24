@@ -32,7 +32,7 @@ const { showDropdown , openDrop } = useSearch();
           <div className={css.navItem}>
             <span className={css.navLink}>Tv Shows</span>
             <ul className={css.dropdown}>
-              <li><Link to="/tvshows/category/popular">Popüler</Link></li>
+              <li><Link to="/tvshows/category/popular">Populer</Link></li>
               <li><Link to="/tvshows/category/top_rated">Top Rated</Link></li>
               <li><Link to="/tvshows/category/on_the_air">On The Air</Link></li>
             </ul>

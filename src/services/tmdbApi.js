@@ -39,7 +39,7 @@ export async function fetchMoviesOrTvByCategory(type, category) {
 export async function fetchDetailsById(type, id) {
   const mappedType = typeMap[type] || type;
 
-  const url = `${BASE_URL}/${mappedType}/${id}?api_key=${API_KEY}&language=tr-TR`;
+  const url = `${BASE_URL}/${mappedType}/${id}?api_key=${API_KEY}&language=en-US`;
   const res = await fetch(url);
   return await res.json();
 }
