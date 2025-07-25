@@ -9,9 +9,7 @@
     height: 100%;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-}
+
 
 .posterWrapper {
     position: relative;

@@ -1,7 +1,15 @@
-.container {
-    padding: 2rem;
-    background-color: #f9f9f9;
-    min-height: 100vh;
+.pageWrapper {
+    max-width: 1340px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem ;
+}
+
+.contentWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .heading {
@@ -12,6 +20,23 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
+}
+
+.loadMore {
+    margin: 2rem auto 0;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #01b4e4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.loadMore:hover {
+    background-color: #0291b9;
 }

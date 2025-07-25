@@ -48,7 +48,27 @@ export async function fetchDetailsById(type, id) {
 export async function fetchCreditsById(type, id) {
   const mappedType = typeMap[type] || type;
 
-  const url = `${BASE_URL}/${mappedType}/${id}/credits?api_key=${API_KEY}&language=tr-TR`;
+  const url = `${BASE_URL}/${mappedType}/${id}/credits?api_key=${API_KEY}&language=en-US`;
   const res = await fetch(url);
   return await res.json();
+}
+
+// Trailer
+export async function fetchVideosById(type, id) {
+  const mappedType = typeMap[type] || type; 
+
+  const url = `${BASE_URL}/${mappedType}/${id}/videos?api_key=${API_KEY}&language=en-US`;
+  
+  const res = await fetch(url);
+  return await res.json();
+}
+
+// Genre
+export async function fetchGenres(type) {
+ 
+  const mappedType = typeMap[type] || type;
+
+  const res = await fetch(`${BASE_URL}/genre/${mappedType}/list?api_key=${API_KEY}&language=en-US`);
+  const data = await res.json();
+  return data.genres;
 }

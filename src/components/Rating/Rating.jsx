@@ -1,20 +1,19 @@
-import PropTypes from 'prop-types';
 import css from './Rating.module.css';
 
-export default function Rating({ value, variant = 'card' }) {
-  const display = value !== undefined ? Math.round(value * 10) : '–';
+export default function Rating({ value, variant = 'badge' }) {
+  const rounded = Math.round(value * 10); // örn: 7.2 → 72
+
+  let colorClass = '';
+  if (rounded >= 70) colorClass = css.green;
+  else if (rounded >= 50) colorClass = css.yellow;
+  else colorClass = css.red;
 
   const className =
-    variant === 'inline' ? css.inlineRating : css.scoreBadge;
+    variant === 'inline' ? `${css.inlineRating} ${colorClass}` : `${css.scoreBadge} ${colorClass}`;
 
   return (
-    <span className={className}>
-      {display}<sup>%</sup>
-    </span>
+    <div className={className}>
+      <span>{rounded}<sup>%</sup></span>
+    </div>
   );
 }
-
-Rating.propTypes = {
-  value: PropTypes.number,
-  variant: PropTypes.oneOf(['card', 'inline']),
-};
