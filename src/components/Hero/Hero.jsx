@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import css from './Hero.module.css';
-import SearchInput from '../SearchInput/SearchInput';
 import { fetchTrending } from '../../services/tmdbApi';
 
 export default function Hero() {
   const [bgPath, setBgPath] = useState('');
   const [heroQuery, setHeroQuery] = useState('');
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchTrending()
@@ -24,8 +24,10 @@ export default function Hero() {
     : {};
 
   const handleHeroSearch = () => {
-    
-    console.log('Hero search for:', heroQuery);
+    const term = heroQuery.trim();
+    if (term.length >= 3) {
+      navigate(`/search/${term}`);
+    }
   };
 
   return (
@@ -34,7 +36,6 @@ export default function Hero() {
       style={backgroundStyle}
     >
       <div className={css.overlay}>
-       
         <div className={css.heroBack}>
           <h1>Welcome!</h1>
           <p>Millions of movies, TV shows and people to discover. Explore now.</p>
@@ -42,9 +43,10 @@ export default function Hero() {
             <input
               type="text"
               className={css.inputHero}
-              placeholder="Search for a movie, tv show or person..."
+              placeholder="Search for a movie, TV show or person..."
               value={heroQuery}
               onChange={(e) => setHeroQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleHeroSearch()}
             />
             <button 
               className={css.buttonHero} 

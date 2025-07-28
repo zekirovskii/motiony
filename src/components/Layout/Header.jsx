@@ -2,10 +2,23 @@ import { Link } from "react-router-dom";
 import css from "./Header.module.css";
 import { FaSearch } from "react-icons/fa";
 import { useSearch } from '../../context/SearchContext';
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
 
-const { showDropdown , openDrop } = useSearch();
+  const { showDropdown, openDrop, toggleSearchInput ,forceOpenDropdown } = useSearch();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  const handleSearchClick = () => {
+    if (isHome) {
+      // Home'da input zaten açık → sadece dropdown'u aç
+      forceOpenDropdown();
+    } else {
+      // Diğer sayfalarda input'u aç
+      toggleSearchInput();
+    }
+  };
 
   return (
     <header className={css.header}>
@@ -38,9 +51,11 @@ const { showDropdown , openDrop } = useSearch();
             </ul>
           </div>
         </nav>
-        <button className={css.searchIcon} onClick={openDrop} >
-          <FaSearch/>
+        
+        <button className={css.searchIcon} onClick={handleSearchClick}>
+          <FaSearch />
         </button>
+  
       </div>
     </header>
   );

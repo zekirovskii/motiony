@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 
 import CategoryPage from '../pages/CategoryPage/CategoryPage';
 import DetailPage from '../pages/DetailPage/DetailPage';
+import SearchResultsPage from '../pages/SearchResultsPage/SearchResultsPage';
 
 
 export default function AppRoutes() {
@@ -13,6 +14,7 @@ export default function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/:type/category/:category" element={<CategoryPage />} />
         <Route path="/:type/detail/:id" element={<DetailPage />} />
+        <Route path="/search/:query" element={<SearchResultsPage />}/>
       </Route>
     </Routes>
   );

@@ -1,18 +1,21 @@
-// src/components/SearchInput/SearchInput.jsx
-import { useState, useEffect, useRef } from 'react';
-import { FaArrowTrendUp } from 'react-icons/fa6';
-import { FaSearch } from 'react-icons/fa';
-import css from './SearchInput.module.css';
-import useDebounce from '../../hooks/useDebounce';
-import { fetchTrending, searchItem } from '../../services/tmdbApi';
-import { useSearch } from '../../context/SearchContext';
+
+import { useState, useEffect, useRef } from "react";
+import { FaArrowTrendUp } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
+import css from "./SearchInput.module.css";
+import useDebounce from "../../hooks/useDebounce";
+import { fetchTrending, searchItem } from "../../services/tmdbApi";
+import { useSearch } from "../../context/SearchContext";
+
+import { useNavigate } from "react-router-dom";
 
 export default function SearchInput() {
   const { showDropdown, openDrop, closeDrop } = useSearch();
   const dropdownRef = useRef();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
 
   // dış tıklamada kapat
   useEffect(() => {
@@ -21,8 +24,8 @@ export default function SearchInput() {
         closeDrop();
       }
     };
-    document.addEventListener('mousedown', onClick);
-    return () => document.removeEventListener('mousedown', onClick);
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
   }, [closeDrop]);
 
   useEffect(() => {
@@ -31,15 +34,18 @@ export default function SearchInput() {
     const term = debouncedQuery.trim();
 
     if (term.length < 3) {
-      fetchTrending()
-        .then(setItems)
-        .catch(console.error);
-      return; 
+      fetchTrending().then(setItems).catch(console.error);
+      return;
     }
-    searchItem(term)
-      .then(setItems)
-      .catch(console.error);
+    searchItem(term).then(setItems).catch(console.error);
   }, [debouncedQuery, showDropdown]);
+
+  const handleSearch = () => {
+    if (query.trim().length >= 3) {
+      navigate(`/search/${query}`);
+      closeDrop();
+    }
+  };
 
 
   return (
@@ -54,6 +60,7 @@ export default function SearchInput() {
         value={query}
         onFocus={openDrop}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
 
       {showDropdown && (
@@ -63,23 +70,33 @@ export default function SearchInput() {
               <div>
                 <FaArrowTrendUp className={css.trendIcon} />
                 <span>
-                  {debouncedQuery.trim().length <3
-                    ? 'Mainstream'
+                  {debouncedQuery.trim().length < 3
+                    ? "Mainstream"
                     : `Results for '${debouncedQuery}'`}
                 </span>
               </div>
             </div>
             <ul className={css.trendList}>
-              {items.length > 0
-                ? items.slice(0, 8).map((item) => (
-                    <li key={item.id} className={css.trendItem}>
-                      <FaSearch className={css.listIcon} />
-                      {item.title || item.name}
-                    </li>
-                  ))
-                : (
-                    <li className={css.trendItem}>No results</li>
-                  )}
+              {items.length > 0 ? (
+                items.slice(0, 8).map((item) => (
+                  <li
+                    key={item.id}
+                    className={css.trendItem}
+                    onClick={() => {
+                      const term = (item.title || item.name || "").trim();
+                      if (term.length >= 3) {
+                        navigate(`/search/${term}`);
+                        closeDrop();
+                      }
+                    }}
+                  >
+                    <FaSearch className={css.listIcon} />
+                    {item.title || item.name}
+                  </li>
+                ))
+              ) : debouncedQuery.length >= 3 ? (
+                <li className={css.trendItem}>No results</li>
+              ) : null}
             </ul>
           </div>
         </div>

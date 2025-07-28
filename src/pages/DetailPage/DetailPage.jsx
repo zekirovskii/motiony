@@ -157,7 +157,7 @@ export default function DetailPage() {
               src={`https://www.youtube.com/embed/${trailerKey}`}
               title="Official Trailer"
               frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="autoplay; encrypted-media; picture-in-picture"
               allowFullScreen
             />
           </div>
