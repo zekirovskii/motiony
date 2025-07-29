@@ -10,8 +10,8 @@ const typeMap = {
 };
 
 // Hero --> Background
-export const fetchTrending = async () => {
-  const response = await axios.get(`${BASE_URL}/trending/all/day`, {
+export const fetchTrending = async (timeWindow = "day") => {
+  const response = await axios.get(`${BASE_URL}/trending/all/${timeWindow}`, {
     params: { api_key: API_KEY }
   });
   return response.data.results;
@@ -25,6 +25,43 @@ export const searchItem = async (query) => {
   const data = await res.json();
   return data.results;
 };
+
+// Latest Trailers
+export const fetchTrailersByCategory = async (category = "popular") => {
+  let endpoint;
+
+  switch (category) {
+    case "streaming":
+      endpoint = "/movie/now_playing";
+      break;
+    case "on_tv":
+      endpoint = "/tv/on_the_air";
+      break;
+    case "for_rent":
+      endpoint = "/movie/upcoming";
+      break;
+    case "in_theaters":
+      endpoint = "/movie/now_playing";
+      break;
+    default:
+      endpoint = "/movie/popular";
+  }
+
+  const response = await axios.get(`${BASE_URL}${endpoint}`, {
+    params: { api_key: API_KEY, language: "en-US" }
+  });
+  return response.data.results;
+};
+
+// Whats Popular
+export const fetchWhatsPopular = async (type = "movie") => {
+  const response = await axios.get(`${BASE_URL}/${type}/popular`, {
+    params: { api_key: API_KEY, language: "en-US" }
+  });
+  return response.data.results;
+};
+
+
 
 // Category Page
 export async function fetchMoviesOrTvByCategory(type, category) {

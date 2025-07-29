@@ -11,7 +11,7 @@ export default function CategoryPage() {
 
   const [allItems, setAllItems] = useState([]);
   const [items, setItems] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(12);
+  const [visibleCount, setVisibleCount] = useState(10);
   const [sort, setSort] = useState('popularity.desc');
   const [filters, setFilters] = useState({
     rating: false,
@@ -28,7 +28,7 @@ export default function CategoryPage() {
       const results = data?.results || [];
       setAllItems(results);
       setItems(results);
-      setVisibleCount(12);
+      setVisibleCount(10);
     });
 
     fetchGenres(type).then(setGenres);
@@ -101,11 +101,11 @@ export default function CategoryPage() {
     });
 
     setItems(filtered);
-    setVisibleCount(12);
+    setVisibleCount(10);
   };
 
   const handleLoadMore = () => {
-    setVisibleCount(prev => prev + 12);
+    setVisibleCount(prev => prev + 10);
   };
 
   const isFilterApplied =
