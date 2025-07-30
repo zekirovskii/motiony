@@ -18,13 +18,16 @@ export const fetchTrending = async (timeWindow = "day") => {
 };
 
 // Search 
-export const searchItem = async (query) => {
+export async function searchItem(query, page = 1) {
   const res = await fetch(
-    `${BASE_URL}/search/multi?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(query)}&page=1&include_adult=false`
+    `${BASE_URL}/search/multi?api_key=${API_KEY}&query=${encodeURIComponent(query)}&page=${page}`
   );
   const data = await res.json();
-  return data.results;
-};
+  return {
+    results: data.results,
+    totalPages: data.total_pages
+  };
+}
 
 // Latest Trailers
 export const fetchTrailersByCategory = async (category = "popular") => {

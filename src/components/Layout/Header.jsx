@@ -12,10 +12,9 @@ export default function Header() {
 
   const handleSearchClick = () => {
     if (isHome) {
-      // Home'da input zaten açık → sadece dropdown'u aç
       forceOpenDropdown();
     } else {
-      // Diğer sayfalarda input'u aç
+      
       toggleSearchInput();
     }
   };

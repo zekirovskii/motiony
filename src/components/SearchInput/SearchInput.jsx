@@ -17,7 +17,6 @@ export default function SearchInput() {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
 
-  // dış tıklamada kapat
   useEffect(() => {
     const onClick = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -28,17 +27,21 @@ export default function SearchInput() {
     return () => document.removeEventListener("mousedown", onClick);
   }, [closeDrop]);
 
-  useEffect(() => {
-    if (!showDropdown) return;
+ useEffect(() => {
+  if (!showDropdown) return;
 
-    const term = debouncedQuery.trim();
+  const term = debouncedQuery.trim();
 
-    if (term.length < 3) {
-      fetchTrending().then(setItems).catch(console.error);
-      return;
-    }
-    searchItem(term).then(setItems).catch(console.error);
-  }, [debouncedQuery, showDropdown]);
+  if (term.length < 3) {
+    fetchTrending()
+      .then((results) => setItems(results)) 
+      .catch(console.error);
+    return;
+  }
+  searchItem(term)
+    .then((data) => setItems(data.results ))
+    .catch(console.error);
+}, [debouncedQuery, showDropdown]);
 
   const handleSearch = () => {
     if (query.trim().length >= 3) {

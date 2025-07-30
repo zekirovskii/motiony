@@ -92,3 +92,14 @@
     font-size: 14px;
     color: #555;
 }
+
+.iconPlaceholder {
+   
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border-radius: 8px;
+    
+}
