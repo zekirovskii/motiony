@@ -1,7 +1,7 @@
 import css from './Rating.module.css';
 
 export default function Rating({ value, variant = 'badge' }) {
-  const rounded = Math.round(value * 10); // örn: 7.2 → 72
+  const rounded = Math.round(value * 10); 
 
   let colorClass = '';
   if (rounded >= 70) colorClass = css.green;

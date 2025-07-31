@@ -22,8 +22,8 @@ export default function SearchResultsPage() {
     if (data.results.length === 0) {
       setError("No movies were found matching your query.");
     }
-    setResults(data.results.slice(0, 10)); // 10 kart
-    setTotalPages(Math.min(data.totalPages, 50)); // max 50 sayfa
+    setResults(data.results.slice(0, 10)); 
+    setTotalPages(Math.min(data.totalPages, 50)); 
   })
       .catch(() => setError("Something went wrong."))
       .finally(() => setLoading(false));
